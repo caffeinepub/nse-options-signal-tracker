@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.375rem;
+
+    /* Dark trading terminal palette - OKLCH values */
+    --background: 0.12 0.015 240;
+    --foreground: 0.93 0.015 225;
+    --card: 0.16 0.02 240;
+    --card-foreground: 0.93 0.015 225;
+    --popover: 0.19 0.025 240;
+    --popover-foreground: 0.93 0.015 225;
+    --primary: 0.77 0.17 162;
+    --primary-foreground: 0.12 0.015 240;
+    --secondary: 0.25 0.04 235;
+    --secondary-foreground: 0.93 0.015 225;
+    --muted: 0.2 0.025 240;
+    --muted-foreground: 0.67 0.04 230;
+    --accent: 0.25 0.04 235;
+    --accent-foreground: 0.93 0.015 225;
+    --destructive: 0.63 0.19 25;
+    --destructive-foreground: 0.93 0.015 225;
+    --border: 0.25 0.04 235;
+    --input: 0.2 0.025 240;
+    --ring: 0.77 0.17 162;
+
+    --chart-1: 0.77 0.17 162;
+    --chart-2: 0.63 0.19 25;
+    --chart-3: 0.7 0.15 200;
+    --chart-4: 0.78 0.15 85;
+    --chart-5: 0.6 0.15 290;
+
+    --sidebar: 0.14 0.018 240;
+    --sidebar-foreground: 0.67 0.04 230;
+    --sidebar-primary: 0.77 0.17 162;
+    --sidebar-primary-foreground: 0.12 0.015 240;
+    --sidebar-accent: 0.25 0.04 235;
+    --sidebar-accent-foreground: 0.93 0.015 225;
+    --sidebar-border: 0.25 0.04 235;
+    --sidebar-ring: 0.77 0.17 162;
+
+    /* Custom semantic tokens */
+    --buy: 0.77 0.17 162;
+    --sell: 0.63 0.19 25;
+    --neutral: 0.67 0.04 230;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground));
+  }
+}
+
+@layer utilities {
+  .text-buy {
+    color: oklch(var(--buy));
+  }
+  .text-sell {
+    color: oklch(var(--sell));
+  }
+  .bg-buy\/10 {
+    background-color: oklch(var(--buy) / 0.1);
+  }
+  .bg-sell\/10 {
+    background-color: oklch(var(--sell) / 0.1);
+  }
+  .border-buy {
+    border-color: oklch(var(--buy));
+  }
+  .border-sell {
+    border-color: oklch(var(--sell));
+  }
+  .text-muted-fg {
+    color: oklch(var(--muted-foreground));
+  }
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .pulse-dot {
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  .signal-enter {
+    animation: signal-enter 0.4s ease-out;
+  }
+
+  @keyframes signal-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
